@@ -1,0 +1,39 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+
+.containerCalc{
+    width: 25%;
+    background-color: aqua;
+}
+
+.row{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    width: 50px;
+    height: 50px;
+}
+
+#numberCero{
+    width: 24%;
+}
+
+.row-display{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.p-display{
+    width: 200px;
+    background-color: gray;
+    padding-block-start: 1em;
+    padding-block-end: 1em;
+    padding: 10px;
+}
+
