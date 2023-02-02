@@ -5,7 +5,7 @@ let calculator = []
 // DISPLAY 
 
 const display = document.getElementById('display');
-display.innerHTML = 0
+display.innerText = 0
 
 // OPERATORS
 
@@ -17,27 +17,19 @@ const equal = document.getElementById('equal');
 const restart = document.getElementById('restart');
 
 plus.addEventListener('click', e => {
-    calculator.push(plus.innerText)
-
-    display.innerHTML = calculator.join('')
+    returnResult(plus.innerText)
 })
 
 minus.addEventListener('click', e => {
-    calculator.push(minus.innerText)
-
-    display.innerHTML = calculator.join('')
+    returnResult(minus.innerText)
 })
 
 multiplicate.addEventListener('click', e => {
-    calculator.push(multiplicate.innerText)
-
-    display.innerHTML = calculator.join('')
+    returnResult(multiplicate.innerText)
 })
 
 divide.addEventListener('click', e => {
-    calculator.push(divide.innerText)
-
-    display.innerHTML = calculator.join('')
+    returnResult(divide.innerText)
 })
 
 restart.addEventListener('click', e => {
@@ -47,75 +39,89 @@ restart.addEventListener('click', e => {
 })
 
 equal.addEventListener('click', e => {
-    const searchPlus = calculator.find(n => n == '+');
-    if (searchPlus) {
-        calculator = calculator.join('').split('+')
-        calculator = calculator.reduce( (first, second) => {
-
-            let res = parseInt(first) + parseInt(second)
-
-            if (!Number(res)) {
-                calculator = []
-                return display.innerText = 'error'
-            }
-
-            calculator = [res]
-
-            return display.innerText = calculator
-        })
-    }
-
-    const searchMinus = calculator.find(n => n == '-');
-    if (searchMinus) {
-        calculator = calculator.join('').split('-')
-        calculator = calculator.reduce( (first, second) => {
-            let res = parseInt(first) - parseInt(second)
-
-            if (!Number(res)) {
-                calculator = []
-                return display.innerText = 'error'
-            }
-
-            calculator = [res]
-
-            return display.innerText = calculator
-        })
-    }
-
-    const searchMultiplicate = calculator.find(n => n == '*');
-    if (searchMultiplicate) {
-        calculator = calculator.join('').split('*')
-        calculator = calculator.reduce( (first, second) => {
-            let res = parseInt(first) * parseInt(second)
-
-            if (!Number(res)) {
-                calculator = []
-                return display.innerText = 'error'
-            }
-
-            calculator = [res]
-
-            return display.innerText = calculator
-        })
-    }
-
-    const searchDivide = calculator.find(n => n == '/');
-    if (searchDivide) {
-        calculator = calculator.join('').split('/')
-        calculator = calculator.reduce( (first, second) => {
-            let res = parseInt(first) / parseInt(second)
-
-            if (!Number(res)) {
-                calculator = []
-                return display.innerText = 'error'
-            }
-
-            calculator = [res]
-
-            return display.innerText = calculator
-        })
-    }
+    equalF()
 })
+
+// FUNCTIONS
+
+function returnResult (value) {
+    const sPlus = calculator.find(n => n == "+")
+    const sMinus = calculator.find(n => n == "-")
+    const sMultiplicate = calculator.find(n => n == "*")
+    const sDivide = calculator.find(n => n == "/")
+
+    if (sPlus || sMinus || sMultiplicate || sDivide) {
+        equalF()
+    }
+
+    calculator.push(value)
+}
+
+function equalF () {
+    const sPlus = calculator.find(n => n == "+")
+    const sMinus = calculator.find(n => n == "-")
+    const sMultiplicate = calculator.find(n => n == "*")
+    const sDivide = calculator.find(n => n == "/")
+
+    if (sPlus) {
+        let res = calculator.join('').split('+').reduce((f, s) => parseInt(f) + parseInt(s))
+        display.innerText = res
+        return calculator = [res]
+    }
+
+    if (sMinus) {
+        let res = calculator.join('').split('-').reduce((f, s) => parseInt(f) - parseInt(s))
+        display.innerText = res
+        return calculator = [res]
+    }
+
+    if (sMultiplicate) {
+        let res = calculator.join('').split('*').reduce((f, s) => parseInt(f) * parseInt(s))
+        display.innerText = res
+        return calculator = [res]
+    }
+
+    if (sDivide) {
+        let res = calculator.join('').split('/').reduce((f, s) => parseInt(f) / parseInt(s))
+        display.innerText = res
+        return calculator = [res]
+    }
+}
+
+function numberAction (value) {
+    const sPlus = calculator.find(n => n == "+")
+    const sMinus = calculator.find(n => n == "-")
+    const sMultiplicate = calculator.find(n => n == "*")
+    const sDivide = calculator.find(n => n == "/")
+
+    if (sPlus) {
+        calculator.push(parseInt(value))
+        let a = calculator.join('').split('+')
+        return display.innerText = a[1]
+    }
+
+    if (sMinus) {
+        calculator.push(parseInt(value))
+        let a = calculator.join('').split('-')
+        return display.innerText = a[1]
+    }
+
+    if (sMultiplicate) {
+        calculator.push(parseInt(value))
+        let a = calculator.join('').split('*')
+        return display.innerText = a[1]
+    }
+
+    if (sDivide) {
+        calculator.push(parseInt(value))
+        let a = calculator.join('').split('/')
+        return display.innerText = a[1]
+    }
+
+    calculator.push(parseInt(value))
+
+    display.innerHTML = calculator.join('')
+}
 
 // NUMBERS DECLARATION AND EVENTS
 
@@ -131,61 +137,43 @@ const eight = document.getElementById('numberEight');
 const nine = document.getElementById('numberNine');
 
 cero.addEventListener('click', e => {
-    calculator.push(parseInt(one.innerText))
+    numberAction(parseInt(cero.innerText))
 
-    display.innerHTML = calculator.join('')
 })
 
 one.addEventListener('click', e => {
-    calculator.push(parseInt(one.innerText))
-
-    display.innerHTML = calculator.join('')
+    numberAction(parseInt(one.innerText))
 })
 
 two.addEventListener('click', e => {
-    calculator.push(parseInt(two.innerText))
+    numberAction(parseInt(two.innerText))
 
-    display.innerHTML = calculator.join('')
 })
 
 three.addEventListener('click', e => {
-    calculator.push(parseInt(three.innerText))
-
-    display.innerHTML = calculator.join('')
+    numberAction(parseInt(three.innerText))
 })
 
 four.addEventListener('click', e => {
-    calculator.push(parseInt(four.innerText))
-
-    display.innerHTML = calculator.join('')
+    numberAction(parseInt(four.innerText))
 })
 
 five.addEventListener('click', e => {
-    calculator.push(parseInt(five.innerText))
-
-    display.innerHTML = calculator.join('')
+    numberAction(parseInt(five.innerText))
 })
 
 six.addEventListener('click', e => {
-    calculator.push(parseInt(six.innerText))
-
-    display.innerHTML = calculator.join('')
+    numberAction(parseInt(six.innerText))
 })
 
 seven.addEventListener('click', e => {
-    calculator.push(parseInt(seven.innerText))
-
-    display.innerHTML = calculator.join('')
+    numberAction(parseInt(seven.innerText))
 })
 
 eight.addEventListener('click', e => {
-    calculator.push(parseInt(eight.innerText))
-
-    display.innerHTML = calculator.join('')
+    numberAction(parseInt(eight.innerText))
 })
 
 nine.addEventListener('click', e => {
-    calculator.push(parseInt(nine.innerText))
-
-    display.innerHTML = calculator.join('')
+    numberAction(parseInt(nine.innerText))
 })
