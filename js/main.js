@@ -15,6 +15,12 @@ const multiplicate = document.getElementById('multiplicate');
 const divide = document.getElementById('divide');
 const equal = document.getElementById('equal');
 const restart = document.getElementById('restart');
+const percentage = document.getElementById('onePercentage');
+
+percentage.addEventListener('click', e => {
+    display.innerText = parseInt(calculator.join('')) / 100
+    calculator = []
+})
 
 plus.addEventListener('click', e => {
     returnResult(plus.innerText)
@@ -138,7 +144,6 @@ const nine = document.getElementById('numberNine');
 
 cero.addEventListener('click', e => {
     numberAction(parseInt(cero.innerText))
-
 })
 
 one.addEventListener('click', e => {
