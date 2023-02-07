@@ -1,11 +1,23 @@
 body{
     display: flex;
     justify-content: center;
+    padding-top: 100px;
+    background-color: #232b2b;
 }
 
 .containerCalc{
     width: 25%;
-    background-color: aqua;
+    background-color: #232b2b;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.borderButtonL{
+    border-bottom-left-radius: 8px;
+}
+
+.borderButtonR{
+    border-bottom-right-radius: 8px;
 }
 
 .row{
@@ -17,6 +29,17 @@ body{
 button{
     width: 50px;
     height: 50px;
+    background-color: gray;
+    font-size: 15px;
+}
+
+.signButton{
+    background-color: #e69138;
+    border-color: #e69138;
+}
+
+.topButton{
+    background-color: #5b5b5b;
 }
 
 #numberCero{
@@ -30,10 +53,12 @@ button{
 }
 
 .p-display{
-    width: 200px;
-    background-color: gray;
-    padding-block-start: 1em;
-    padding-block-end: 1em;
-    padding: 10px;
+    width: 190px;
+    background-color: #5b5b5b;
+    padding: 20px 5px 20px 5px;
+    margin: 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    font-size: 20px;
 }
 
